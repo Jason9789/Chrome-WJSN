@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react'
 
 const Greeting = () => {
-  let [name, setName] = useState('');
+  let [name, setName] = useState('')
 
   const onChange = useCallback((e) => {
-    console.log(e.target.value);
-    setName(e.target.value);
-  }, []);
+    console.log(e.target.value)
+    setName(e.target.value)
+  }, [])
 
   const onSubmit = useCallback(
     (e) => {
@@ -15,34 +15,34 @@ const Greeting = () => {
       // localStorage에 저장
       if (!window.localStorage.userName) {
         // 저장된 유저가 없을 때
-        const userName = name;
-        window.localStorage.setItem('userName', userName);
+        const userName = name
+        window.localStorage.setItem('userName', userName)
       }
 
-      setName('');
+      setName('')
     },
-    [name]
-  );
+    [name],
+  )
 
   return (
-    <div className='whats-your-name__container' id='js-whats-your-container'>
-      <main className='whats-your-name'>
-        <span className='whats-your-name__text'>
+    <div className="whats-your-name__container" id="js-whats-your-container">
+      <main className="whats-your-name">
+        <span className="whats-your-name__text">
           당신의 이름을 알고 싶어요!
         </span>
-        <form className='form' id='js-name-form' onSubmit={onSubmit}>
+        <form className="form" id="js-name-form" onSubmit={onSubmit}>
           <input
-            type='text'
-            className='input'
-            id='js-name-input'
+            type="text"
+            className="input"
+            id="js-name-input"
             value={name}
-            autoComplete='off'
+            autoComplete="off"
             onChange={onChange}
           />
         </form>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Greeting;
+export default Greeting
