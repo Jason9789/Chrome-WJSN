@@ -1,5 +1,7 @@
 {
   "env": {
-    "webextensions": true
+    "webextensions": true,
+    "node": true,
+    "es2021": true
   }
 }

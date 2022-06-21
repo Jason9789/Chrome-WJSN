@@ -36,12 +36,12 @@ const User = () => {
 
   return (
     <div>
-      <h1>
-        {greetingText} {userName}님
-      </h1>
-
       <div>{time.format('YYYY-MM-DD')}</div>
       <div>{time.format('HH : mm : ss')}</div>
+
+      <h3>
+        {greetingText} {userName}님
+      </h3>
     </div>
   );
 };
