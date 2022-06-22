@@ -1,15 +1,20 @@
+import '../App.css';
 import React from 'react';
-import TodoList from './TodoList';
+import TodoListBlock from './TodoListBlock';
 import User from './User';
 import Weather from './Weather';
 
 function Main() {
   return (
-    <div>
-      <Weather />
-      <User />
-      <TodoList />
-    </div>
+    <>
+      <div className="App">
+        <Weather />
+        <User />
+      </div>
+      <div>
+        <TodoListBlock />
+      </div>
+    </>
   );
 }
 
