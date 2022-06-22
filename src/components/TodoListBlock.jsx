@@ -1,32 +1,27 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TodoInsert from './TodoInsert';
 import TodoList from './TodoList';
 import TodoTemplate from './TodoTemplate';
 
 function TodoListBlock() {
   // eslint-disable-next-line no-unused-vars
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: 'Todo 만들기',
-      checked: true,
-    },
-    {
-      id: 2,
-      text: 'UI 꾸미기',
-      checked: false,
-    },
-    {
-      id: 3,
-      text: 'Open weather API 붙이기',
-      checked: false,
-    },
-  ]);
+  const [todos, setTodos] = useState([]); // TodoList 배열
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('Todos'))) {
+      setTodos(JSON.parse(localStorage.getItem('Todos')));
+    }
+  }, []);
 
   // Todo List 고윳값 id
   // ref를 사용하여 변수 담기
-  const nextId = useRef(4);
+  const localIntId = localStorage.getItem('TODO_COUNT')
+    ? parseInt(localStorage.getItem('TODO_COUNT'), 10) + parseInt(1, 10)
+    : parseInt(0, 10);
 
+  const nextId = useRef(localIntId);
+
+  // INSERT
   const onInsert = useCallback(
     (text) => {
       const todo = {
@@ -44,6 +39,9 @@ function TodoListBlock() {
   const onRemove = useCallback(
     (id) => {
       setTodos(todos.filter((todo) => todo.id !== id));
+      // const loadTodoList = JSON.parse(localStorage.getItem('Todos'));
+      // const result = loadTodoList.filter((list) => list.id !== id);
+      localStorage.setItem('Todos', JSON.stringify(todos));
     },
     [todos],
   );
@@ -66,8 +64,7 @@ function TodoListBlock() {
 
   return (
     <TodoTemplate>
-      Todo 만들기
-      <TodoInsert onInsert={onInsert} />
+      <TodoInsert id={nextId.current} onInsert={onInsert} />
       <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
     </TodoTemplate>
   );
