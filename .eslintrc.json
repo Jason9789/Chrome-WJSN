@@ -11,9 +11,10 @@
 
     "plugin:prettier/recommended"
     // "prettier/react"
-  ]
-
-  // "parserOptions": {
-  //   "ecmaVersion": 2018
-  // }
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  }
 }
