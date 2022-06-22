@@ -1,31 +1,92 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+// import React from 'react';
 import {
   MdCheckBox,
   MdCheckBoxOutlineBlank,
   MdRemoveCircleOutline,
 } from 'react-icons/md';
-import cn from 'classnames';
+
 import '../styles/TodoListItem.scss';
 
-// eslint-disable-next-line react/prop-types
-function TodoListItem({ todo, onRemove, onToggle }) {
-  // eslint-disable-next-line react/prop-types
-  const { id, text, checked } = todo;
+import React, { useState, useRef, useEffect, memo } from 'react';
 
-  return (
-    <div className="TodoListItem">
-      <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
-        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+const TodoListItem = memo(
+  ({ id, todo, isChecked, deleteTodo, updateTodo, toggleCheck }) => {
+    const [value, setValue] = useState(todo);
+    const [isUpdate, setIsUpdate] = useState(false);
+    const input = useRef(null);
 
-        <div className="text">{text}</div>
-      </div>
-      <div className="remove" onClick={() => onRemove(id)}>
-        <MdRemoveCircleOutline />
-      </div>
-    </div>
-  );
-}
+    useEffect(() => {
+      if (isUpdate) {
+        input.current.focus();
+      }
+    }, [isUpdate]);
+
+    useEffect(() => {
+      setIsUpdate(false);
+    }, [todo]);
+
+    const onClickTodo = () => {
+      setIsUpdate(true);
+    };
+
+    const onChangeInput = (e) => {
+      setValue(e.target.value);
+    };
+
+    const onFormSubmit = (e) => {
+      e.preventDefault();
+      setIsUpdate(false);
+      if (!value) {
+        setValue(todo);
+      } else if (todo !== value) {
+        updateTodo(id, value, isChecked);
+      }
+    };
+
+    const onBlurInput = () => {
+      setIsUpdate(false);
+    };
+
+    const onKeyUpInput = (e) => {
+      if (e.key === 'Escape') {
+        setIsUpdate(false);
+      }
+    };
+
+    return (
+      <li className="TodoListItem">
+        <div className="checkbox" onClick={toggleCheck(id)}>
+          {isChecked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+          {isUpdate || (
+            <div
+              className={`text ${isChecked ? 'checked' : ''}`}
+              onClick={onClickTodo}
+            >
+              {todo}
+            </div>
+          )}
+        </div>
+        {isUpdate && (
+          <form className="update-form" onSubmit={onFormSubmit}>
+            <input
+              ref={input}
+              value={value}
+              onChange={onChangeInput}
+              onBlur={onBlurInput}
+              onKeyUp={onKeyUpInput}
+            />
+          </form>
+        )}
+        <div className="remove" onClick={deleteTodo(id)}>
+          <MdRemoveCircleOutline />
+        </div>
+      </li>
+    );
+  },
+);
 
 export default TodoListItem;

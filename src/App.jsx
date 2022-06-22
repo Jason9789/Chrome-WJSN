@@ -4,8 +4,7 @@ import Main from './components/Main';
 
 function App() {
   return (
-    <div>
-      {/* <header>😃</header> */}
+    <div className="App">
       {window.localStorage.userName ? <Main /> : <Greeting />}
     </div>
   );

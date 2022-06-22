@@ -6,15 +6,13 @@ import Weather from './Weather';
 
 function Main() {
   return (
-    <>
-      <div className="App">
+    <div className="background">
+      <div>
         <Weather />
         <User />
-      </div>
-      <div>
         <TodoListBlock />
       </div>
-    </>
+    </div>
   );
 }
 

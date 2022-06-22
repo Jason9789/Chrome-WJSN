@@ -1,8 +1,9 @@
 .TodoListItem {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
-  background: rgba($color: #000000, $alpha: 0.1);
+  background: rgba($color: #000000, $alpha: 0.3);
+  color: white;
 
   margin: 0 auto;
   margin-bottom: 10px;
@@ -16,7 +17,7 @@
     align-items: center;
 
     svg {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
 
     .text {
@@ -25,26 +26,26 @@
     }
 
     // 체크 되었을 때
-    &.checked {
-      svg {
-        color: #22b8cf;
-      }
-      .text {
-        color: #adb5bd;
-        text-decoration: line-through;
-      }
+    .checked {
+      color: #adb5bd;
+      text-decoration: line-through;
     }
   }
 
   .remove {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #ff6b6b;
     &:hover {
       color: #ff8787;
     }
   }
 
-  
+  .update-form input {
+    background-color: transparent;
+    border: none;
+    font-size: 2vh;
+    padding: 0;
+  }
 }

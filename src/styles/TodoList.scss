@@ -1,6 +1,13 @@
 .TodoList {
   margin-top: 1rem;
-  min-height: 320px;
-  max-height: 513px;
+  min-height: 180px;
+  max-height: 180px;
   overflow-y: auto;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.TodoList::-webkit-scrollbar {
+  display: none;
 }

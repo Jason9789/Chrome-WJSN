@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import '../styles/User.scss';
 
 function User() {
   let timer = null;
@@ -35,9 +36,9 @@ function User() {
   }
 
   return (
-    <div>
-      <div>{time.format('YYYY-MM-DD')}</div>
-      <div>{time.format('HH : mm : ss')}</div>
+    <div className="Time">
+      {/* <h1>{time.format('YYYY-MM-DD')}</h1> */}
+      <h1>{time.format('HH : mm : ss')}</h1>
 
       <h3>
         {greetingText} {userName}님

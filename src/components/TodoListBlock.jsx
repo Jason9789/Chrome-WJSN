@@ -1,72 +1,100 @@
+/* eslint-disable no-shadow */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TodoInsert from './TodoInsert';
-import TodoList from './TodoList';
-import TodoTemplate from './TodoTemplate';
+import TodoListItem from './TodoListItem';
+
+import '../styles/TodoTemplate.scss';
+import '../styles/TodoList.scss';
 
 function TodoListBlock() {
-  // eslint-disable-next-line no-unused-vars
-  const [todos, setTodos] = useState([]); // TodoList 배열
+  const [todoList, setTodoList] = useState([]);
+  const [id, setId] = useState(0);
+  const isMount = useRef(true);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('Todos'))) {
-      setTodos(JSON.parse(localStorage.getItem('Todos')));
+    if (!isMount.current) {
+      localStorage.setItem('todoList', JSON.stringify(todoList));
+      localStorage.setItem('id', id);
     }
+  }, [todoList, id]);
+
+  useEffect(() => {
+    const localTodoList = localStorage.getItem('todoList');
+    if (localTodoList) {
+      setTodoList(JSON.parse(localTodoList));
+    }
+    const localId = localStorage.getItem('id');
+    if (localId) {
+      setId(parseInt(localId, 10));
+    }
+    isMount.current = false;
   }, []);
 
-  // Todo List 고윳값 id
-  // ref를 사용하여 변수 담기
-  const localIntId = localStorage.getItem('TODO_COUNT')
-    ? parseInt(localStorage.getItem('TODO_COUNT'), 10) + parseInt(1, 10)
-    : parseInt(0, 10);
-
-  const nextId = useRef(localIntId);
-
-  // INSERT
-  const onInsert = useCallback(
-    (text) => {
-      const todo = {
-        id: nextId.current,
-        text,
-        checked: false,
-      };
-
-      setTodos(todos.concat(todo));
-      nextId.current += 1;
+  const addTodo = useCallback(
+    (todo) => (e) => {
+      e.preventDefault();
+      if (todo) {
+        setTodoList((prevTodoList) => [
+          ...prevTodoList,
+          { id, todo, isChecked: false },
+        ]);
+        setId((prevId) => prevId + 1);
+      }
     },
-    [todos],
+    [id],
   );
 
-  const onRemove = useCallback(
-    (id) => {
-      setTodos(todos.filter((todo) => todo.id !== id));
-      // const loadTodoList = JSON.parse(localStorage.getItem('Todos'));
-      // const result = loadTodoList.filter((list) => list.id !== id);
-      localStorage.setItem('Todos', JSON.stringify(todos));
+  const updateTodo = useCallback(
+    (id, todo, isChecked) => {
+      const index = todoList.findIndex((todoInfo) => todoInfo.id === id);
+      const newTodoList = [...todoList];
+      newTodoList.splice(index, 1, {
+        id,
+        todo,
+        isChecked,
+      });
+      setTodoList(newTodoList);
     },
-    [todos],
+    [todoList],
   );
 
-  const onToggle = useCallback(
-    (id) => {
-      setTodos(
-        todos.map((todo) =>
-          todo.id === id
-            ? {
-                ...todo,
-                checked: !todo.checked,
-              }
-            : todo,
-        ),
-      );
+  const deleteTodo = useCallback(
+    (id) => () => {
+      const newTodoList = todoList.filter((todoInfo) => todoInfo.id !== id);
+      setTodoList(newTodoList);
     },
-    [todos],
+    [todoList],
+  );
+
+  const toggleCheck = useCallback(
+    (id) => () => {
+      const index = todoList.findIndex((todoInfo) => todoInfo.id === id);
+      const newTodoList = [...todoList];
+      newTodoList[index].isChecked = !newTodoList[index].isChecked;
+      setTodoList(newTodoList);
+    },
+    [todoList],
   );
 
   return (
-    <TodoTemplate>
-      <TodoInsert id={nextId.current} onInsert={onInsert} />
-      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
-    </TodoTemplate>
+    <div className="TodoTemplate">
+      <TodoInsert addTodo={addTodo} />
+      <div className="TodoList">
+        {todoList.map((todoInfo) => {
+          return (
+            <TodoListItem
+              key={todoInfo.id}
+              id={todoInfo.id}
+              todo={todoInfo.todo}
+              isChecked={todoInfo.isChecked}
+              updateTodo={updateTodo}
+              deleteTodo={deleteTodo}
+              toggleCheck={toggleCheck}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
