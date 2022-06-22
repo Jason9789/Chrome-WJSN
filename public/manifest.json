@@ -1,7 +1,7 @@
 {
   "short_name": "React App",
   "name": "Chrome WJSN",
-  "description": "우주소녀 덕질",
+  "description": "퀸주소녀",
   "manifest_version": 3,
   "version": "1.0.0",
 
@@ -15,6 +15,14 @@
   },
 
   "chrome_url_overrides": {
-    "newtab": "index.html"
+    "newtab": "index.html",
+    "default_icon": "icon16.png"
+  },
+
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   }
 }
