@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import User from './User'
-import Weather from './Weather'
+import React, { useEffect, useState } from 'react';
+import User from './User';
+import Weather from './Weather';
 
 const Main = () => {
   return (
@@ -8,7 +8,7 @@ const Main = () => {
       <Weather />
       <User />
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
