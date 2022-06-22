@@ -1,0 +1,21 @@
+/* Font */
+@font-face {
+  font-family: "GmarketSansTTFBold";;
+  src: url("/assets/fonts/GmarketSansTTF/GmarketSansTTFBold.ttf");
+}
+
+@font-face {
+  font-family: "GmarketSansTTFLight";
+  src: url("/assets/fonts/GmarketSansTTF/GmarketSansTTFLight.ttf");
+}
+
+@font-face {
+  font-family: "GmarketSansTTFMedium";
+  src: url("/assets/fonts/GmarketSansTTF/GmarketSansTTFMedium.ttf");
+}
+
+/* 배민 */
+@font-face {
+  font-family: "BMJUA";
+  src: url("./BM/BMJUA_ttf.ttf");
+}

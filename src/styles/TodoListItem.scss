@@ -5,6 +5,8 @@
   background: rgba($color: #000000, $alpha: 0.3);
   color: white;
 
+  font-family: "BMJUA";
+
   margin: 0 auto;
   margin-bottom: 10px;
 
@@ -17,7 +19,7 @@
     align-items: center;
 
     svg {
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
 
     .text {
@@ -35,7 +37,7 @@
   .remove {
     display: flex;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #ff6b6b;
     &:hover {
       color: #ff8787;

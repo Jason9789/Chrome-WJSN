@@ -36,10 +36,8 @@ function User() {
   }
 
   return (
-    <div className="Time">
-      {/* <h1>{time.format('YYYY-MM-DD')}</h1> */}
-      <h1>{time.format('HH : mm : ss')}</h1>
-
+    <div>
+      <span>{time.format('HH : mm : ss')}</span>
       <h3>
         {greetingText} {userName}님
       </h3>
