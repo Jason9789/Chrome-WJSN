@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import TodoList from './TodoList';
 import User from './User';
 import Weather from './Weather';
 
-const Main = () => {
+function Main() {
   return (
     <div>
       <Weather />
       <User />
+      <TodoList />
     </div>
   );
-};
+}
 
 export default Main;

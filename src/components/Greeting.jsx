@@ -1,28 +1,24 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react';
 
-const Greeting = () => {
-  let [name, setName] = useState('')
+function Greeting() {
+  const [name, setName] = useState('');
 
   const onChange = useCallback((e) => {
-    console.log(e.target.value)
-    setName(e.target.value)
-  }, [])
+    // eslint-disable-next-line no-console
+    console.log(e.target.value);
+    setName(e.target.value);
+  }, []);
 
-  const onSubmit = useCallback(
-    (e) => {
-      // e.preventDefault();
+  const onSubmit = useCallback(() => {
+    // localStorage에 저장
+    if (!window.localStorage.userName) {
+      // 저장된 유저가 없을 때
+      const userName = name;
+      window.localStorage.setItem('userName', userName);
+    }
 
-      // localStorage에 저장
-      if (!window.localStorage.userName) {
-        // 저장된 유저가 없을 때
-        const userName = name
-        window.localStorage.setItem('userName', userName)
-      }
-
-      setName('')
-    },
-    [name],
-  )
+    setName('');
+  }, [name]);
 
   return (
     <div className="whats-your-name__container" id="js-whats-your-container">
@@ -42,7 +38,7 @@ const Greeting = () => {
         </form>
       </main>
     </div>
-  )
+  );
 }
 
-export default Greeting
+export default Greeting;
