@@ -19,7 +19,7 @@ function Main() {
   return (
     <div
       style={{
-        background: `linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${backgroundImg}) no-repeat`,
+        background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundImg}) no-repeat`,
         backgroundSize: 'cover',
       }}
       className="background"

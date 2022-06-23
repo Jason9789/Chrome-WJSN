@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import '../styles/Greeting.scss';
 
 function Greeting() {
   const [name, setName] = useState('');
@@ -21,16 +22,15 @@ function Greeting() {
   }, [name]);
 
   return (
-    <div className="whats-your-name__container" id="js-whats-your-container">
-      <main className="whats-your-name">
-        <span className="whats-your-name__text">
-          당신의 이름을 알고 싶어요!
-        </span>
-        <form className="form" id="js-name-form" onSubmit={onSubmit}>
+    <div className="background">
+      <main>
+        <div className="user-name">당신의 이름을 알고 싶어요!</div>
+        <form className="form-user" onSubmit={onSubmit}>
           <input
             type="text"
-            className="input"
+            className="input-name"
             id="js-name-input"
+            placeholder="이름을 입력하세요"
             value={name}
             autoComplete="off"
             onChange={onChange}
