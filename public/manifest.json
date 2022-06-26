@@ -1,9 +1,9 @@
 {
   "short_name": "React App",
   "name": "Chrome WJSN",
-  "description": "퀸주소녀",
+  "description": "우주소녀와 함께하는 크롬 확장 프로그램",
   "manifest_version": 3,
-  "version": "1.0.0",
+  "version": "1.0.1",
 
   "background": {
     "service_worker": "background.js"
