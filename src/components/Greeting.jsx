@@ -22,9 +22,9 @@ function Greeting() {
   }, [name]);
 
   return (
-    <div className="background">
-      <main>
-        <div className="user-name">당신의 이름을 알고 싶어요!</div>
+    <div className="greeting-background">
+      <main className="main">
+        <div className="user-name-title">당신의 이름을 알고 싶어요!</div>
         <form className="form-user" onSubmit={onSubmit}>
           <input
             type="text"
