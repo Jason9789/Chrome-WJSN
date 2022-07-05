@@ -1,7 +1,14 @@
 @import "../assets/fonts/fonts.css";
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 // 드래그 금지
-h1, h3, span {
+h1,
+h3,
+span {
   // 드래그 금지
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -9,21 +16,36 @@ h1, h3, span {
   user-select: none;
 }
 
-span {
-  // font 
+// user`
+.user-info {
+  text-align: center;
+
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.user-info h1 {
+  // font
   font-family: "GmarketSansTTFBold";
   font-size: 5rem;
   font-weight: 600;
   color: white;
 
-  position: relative;
-  text-align: center;
+  margin-bottom: 16px;
 }
 
-h3 {
-  // font 
+
+.user-info .user-name {
+  // font
   font-family: "BMJUA";
   font-size: 2rem;
   font-weight: 400;
   color: white;
+
+  // position: relative;
 }

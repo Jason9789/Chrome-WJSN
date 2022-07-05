@@ -3,12 +3,12 @@ import moment from 'moment';
 import '../styles/User.scss';
 
 function User() {
-  let timer = null;
+  // let timer = new Date();
   const [time, setTime] = useState(moment());
   const { userName } = window.localStorage;
 
   useEffect(() => {
-    timer = setInterval(() => {
+    const timer = setInterval(() => {
       setTime(moment());
     }, 1000);
     return () => {
@@ -36,9 +36,9 @@ function User() {
   }
 
   return (
-    <div>
-      <span>{time.format('HH : mm : ss')}</span>
-      <h3>
+    <div className="user-info">
+      <h1>{time.format('HH : mm : ss')}</h1>
+      <h3 className="user-name">
         {greetingText} {userName}님
       </h3>
     </div>

@@ -1,11 +1,14 @@
 .TodoList {
+  position: relative;
   margin-top: 1rem;
   min-height: 200px;
   max-height: 200px;
   overflow-y: auto;
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .TodoList::-webkit-scrollbar {
